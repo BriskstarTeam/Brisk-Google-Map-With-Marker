@@ -18,20 +18,22 @@ if ( ! defined( 'BGMWM_PLUGIN_FILE' ) ) {
 if(getenv('WPAE_DEV')) {
     error_reporting(E_ALL ^ E_DEPRECATED );
     ini_set('display_errors', 1);
-    // xdebug_disable();
 }
 
 // Include the main BriskGoogleMapWithMarker class.
-if ( ! class_exists( 'BriskGoogleMapWithMarker', false ) ) {
-    include_once(dirname( BGMWM_PLUGIN_FILE ) . '/includes/class-google-map-with-marker.php');
+
+require_once __DIR__ . '/includes/class-briskgooglemap-autoloader.php';
+Briskgooglemap_Autoloader::register();
+
+
+/* ***************************** HOOK INTO WP *************************** */
+$spl_autoload_exists = function_exists( 'spl_autoload_register' );
+if ( ! wp_installing() && $spl_autoload_exists  ) {
+    add_action('plugins_loaded', 'BGMWM');
 }
 
 // phpcs:ignore WordPress.NamingConventions.ValidFunctionName.FunctionNameInvalid
 function BGMWM() { 
     return BriskGoogleMapWithMarker::instance();
 }
-
-
-
-$GLOBALS['BriskGoogleMapWithMarker'] = BGMWM();
 ?>

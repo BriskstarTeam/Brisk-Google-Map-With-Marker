@@ -31,7 +31,6 @@ class BGMWM_Admin {
 	public function includes() {
 		include_once( BGMWM_ADMIN_ABSPATH . '/class-admin-menus.php' );
 		include_once( BGMWM_ADMIN_ABSPATH . '/class-scripts.php' );
-		include_once( BGMWM_ADMIN_ABSPATH . '/class-shortcode.php' );
 	}
 
 	/**
