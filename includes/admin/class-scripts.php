@@ -69,17 +69,22 @@ class BGMWM_Frontend_Scripts {
      */
     private static function register_styles() {
         $version = '';
+        global $my_admin_page;
+        $screen = get_current_screen();
 
-        $register_styles = array(
-            'style'    => array(
-                'src'     => self::get_asset_url( 'assets/css/style.css' ),
-                'deps'    => array(),
-                'version' => $version,
-                'has_rtl' => false,
-            ),
-        );
-        foreach ( $register_styles as $name => $props ) {
-            self::register_style( $name, $props['src'], $props['deps'], $props['version'], 'all', $props['has_rtl'] );
+        if( is_admin() && $screen->id == 'toplevel_page_brisk-google-map'){
+
+            $register_styles = array(
+                'style'    => array(
+                    'src'     => self::get_asset_url( 'assets/css/style.css' ),
+                    'deps'    => array(),
+                    'version' => $version,
+                    'has_rtl' => false,
+                ),
+            );
+            foreach ( $register_styles as $name => $props ) {
+                self::register_style( $name, $props['src'], $props['deps'], $props['version'], 'all', $props['has_rtl'] );
+            }
         }
     }
 

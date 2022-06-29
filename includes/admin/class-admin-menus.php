@@ -15,6 +15,7 @@ class BGMWM_Admin_Menus {
 	}
 
 	public function BriskGoogleMap(){
+		BGMWM_Frontend_Scripts::init();
 		include( BGMWM_ADMIN_ABSPATH. 'views/google-map.php' );
 	}
 	
@@ -24,10 +25,6 @@ class BGMWM_Admin_Menus {
 	public function admin_menu() {
 		add_menu_page( __( 'Brisk Google Map', 'Brisk Google Map' ), __( 'Brisk Google Map', 'Brisk Google Map' ), 'edit_pages', 'brisk-google-map', array( $this, 'BriskGoogleMap' ), null, '55.5' );
 	}
-
-	
-
-
 }
 return new BGMWM_Admin_Menus();
 ?>
